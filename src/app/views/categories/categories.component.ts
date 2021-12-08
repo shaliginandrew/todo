@@ -11,15 +11,19 @@ export class CategoriesComponent implements OnInit {
 
   categories: Category[] = [];
 
+  selectedCategory: Category | undefined;
+
   constructor(private dataHandler: DataHandlerService) {
   }
 
-  ngOnInit(): void {
+  // метод вызывается автоматически после инициализации компонента
+  ngOnInit() {
     this.dataHandler.categoriesSubject.subscribe(categories => this.categories = categories);
-
   }
 
-  ShowTasksByCategory(category: Category) {
+
+  showTasksByCategory(category: Category) {
+    this.selectedCategory = category;
     this.dataHandler.fillTasksByCategory(category);
   }
 }
